@@ -7,11 +7,11 @@ const Home = () => {
     <div>
       <div className="relative w-full h-[500px]">
       <CldImage
-  width="100"
-  height="100"
-  src="Logo_juzkwh"
+  width="960"
+  height="600"
+  src="Main-Stripe_gsnsuy"
   sizes="20vw"
-  alt="Description of my image"/>
+  alt="main-cake"/>
       </div>
       <div className='flex gap-12 my-12  mx-20 justify-between'>
       <div className='bg-[#009B64] text-white h-[400px] px-20 flex flex-col gap-10 justify-center py-4' >
@@ -28,7 +28,7 @@ const Home = () => {
   height="600"
   src="Main-Cake_leby0z"
   sizes="20vw"
-  alt="Description of my image"/>
+  alt="main-cake"/>
       </div>
       <p className='text-[40px] text-center'>
         Follow us on Instagram

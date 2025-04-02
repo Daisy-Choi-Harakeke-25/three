@@ -28,6 +28,7 @@
     "pg-query-stream": "^4.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-firebase-hooks": "^5.1.1",
     "sqlite3": "^5.1.7",
     "tedious": "^18.6.1"
   },

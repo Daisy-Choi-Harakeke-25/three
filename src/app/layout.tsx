@@ -1,6 +1,7 @@
 "use client"
-import './globals.css'
+import './styles/globals.css'
 import Nav from '../components/Nav'
+import Footer from '@/components/Footer'
 
 
 const Layout = ({
@@ -21,6 +22,7 @@ const Layout = ({
         <main>{children}</main>
         
         <footer className='text-center'>
+          <Footer />
           <p>© 2025 Daisy Choi</p>
         </footer>
       </body>
