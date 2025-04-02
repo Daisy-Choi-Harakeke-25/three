@@ -8,9 +8,8 @@ const Home = () => {
       <div className="relative w-full h-[500px]">
       <CldImage
   width="960"
-  height="600"
+  height="400"
   src="Main-Stripe_gsnsuy"
-  sizes="20vw"
   alt="main-cake"/>
       </div>
       <div className='flex gap-12 my-12  mx-20 justify-between'>
