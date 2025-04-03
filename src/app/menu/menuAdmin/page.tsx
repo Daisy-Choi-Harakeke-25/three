@@ -24,6 +24,7 @@ const menuAdmin = () => {
         description,
         price: parseFloat(price),
         url: imageUrl,
+        
       });
       alert("Menu item added successfully!");
     } catch (error) {

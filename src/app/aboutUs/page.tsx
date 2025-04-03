@@ -6,8 +6,8 @@ import { CldImage } from 'next-cloudinary'
 const AboutUs = () => {
   return (
     <div className="flex flex-row">
-      <div className="relative w-full h-[100px] justify-center items-center">
-        <CldImage src="Logo_juzkwh" alt="logo" className="w-full h-full object-contain" width="960"
+      <div className="flex w-full h-[100px] items-center">
+        <CldImage src="Logo_juzkwh" alt="logo" className="w-full h-full object-contain items-center justify-center " width="960"
           height="600"/>
       </div>
       <article className="relative w-full h-[500px]">

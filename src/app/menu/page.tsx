@@ -2,7 +2,7 @@
 
 import { db } from '@/lib/firebase/config'
 import type { MenuItem } from '@/models/Model'
-import { collection, getDocs } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { auth } from '@/lib/firebase/config'
@@ -17,17 +17,24 @@ const Menu = () => {
     const fetchMenuItems = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'menuItems'))
-        const items: MenuItem[] = querySnapshot.docs.map(
-          (doc) => doc.data() as MenuItem
-        )
+        const items: MenuItem[] = querySnapshot.docs.map((doc) => ({
+          id: doc.id, 
+          ...doc.data(),
+        })) as MenuItem[]
         setMenuItems(items)
       } catch (error) {
         console.error('Error fetching menu items:', error)
       }
     }
-
     fetchMenuItems()
   }, [])
+
+  //how to make delete functionality?
+  //get each img's id
+const handleDelete = async (id: string) => {
+    await deleteDoc(doc(db, 'menuItems', id))
+    setMenuItems((prevItems) => prevItems.filter((item) => item.id !== id))
+}
 
   return (
     <div className="p-4">
@@ -49,7 +56,9 @@ const Menu = () => {
             <p className="text-green-600 font-bold mt-1">
               ${item.price.toFixed(2)}
             </p>
+            {user && <button onClick={() => handleDelete(item.id)}>X</button>}
           </div>
+          
         ))}
       </div>
       <p>{user && <Link href="/menu/menuAdmin">Upload Menu</Link>}</p>
