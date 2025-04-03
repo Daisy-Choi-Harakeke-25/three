@@ -2,12 +2,14 @@
 import { useState } from 'react';
 import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
 import {auth} from '@/lib/firebase/config'
+import { useRouter } from 'next/navigation';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
-
+  const router = useRouter()
+  
   const handleSignUp = async () => {
     try {
         const res = await createUserWithEmailAndPassword(email, password)
@@ -15,7 +17,7 @@ const SignUp = () => {
         sessionStorage.setItem('user', 'true')
         setEmail('');
         setPassword('')
-
+        router.push('/')
     } catch(e){
         console.error(e)
     }
@@ -30,20 +32,20 @@ const SignUp = () => {
           placeholder="Email" 
           value={email} 
           onChange={(e) => setEmail(e.target.value)} 
-          className="w-full p-3 mb-4 bg-white rounded outline-none text-white placeholder-[#009B64]"
+          className="w-full p-3 mb-4 bg-white rounded outline-none text-[#009B64] "
         />
         <input 
           type="password" 
           placeholder="Password" 
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
-          className="w-full p-3 mb-4 bg-white rounded outline-none text-white placeholder-[#009B64]"
+          className="w-full p-3 mb-4 bg-white rounded outline-none text-[#009B64] placeholder-[#009B64]"
         />
         <button 
           onClick={handleSignUp}
           className="w-full p-3 rounded text-white bg-[#2a7a5e] hover:bg-[#22473a]"
         >
-          Sign In
+          Sign Up
         </button>
       </div>
     </div>

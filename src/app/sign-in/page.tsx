@@ -33,14 +33,14 @@ const SignIn = () => {
           placeholder="Email" 
           value={email} 
           onChange={(e) => setEmail(e.target.value)} 
-          className="w-full p-3 mb-4 bg-white rounded outline-none text-white placeholder-[#009B64]"
+          className="w-full p-3 mb-4 bg-white rounded outline-none text-[#009B64]"
         />
         <input 
           type="password" 
           placeholder="Password" 
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
-          className="w-full p-3 mb-4 bg-white rounded outline-none text-white placeholder-[#009B64]"
+          className="w-full p-3 mb-4 bg-white rounded outline-none text-[#009B64]"
         />
         <button 
           onClick={handleSignIn}
