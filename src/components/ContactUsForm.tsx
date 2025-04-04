@@ -44,48 +44,59 @@ const ContactUsForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
+    <form onSubmit={handleSubmit} className='flex flex-col items-center gap-4'>
+      <div className='flex w-[500px] flex-col justify-center'>
+      <label htmlFor="name">Name *</label>
       <input
         type="text"
         id="name"
         name="name"
-        placeholder="Name"
         value={form?.name}
         onChange={handleChange}
         required
+        className='w-[500px] border-b-2 border-gray-400 focus:outline-none focus:border-green-500'
       />
-      <label htmlFor="email">Email</label>
+      </div>
+
+      <div className='flex w-[500px] flex-col justify-center'>
+      <label htmlFor="email">Email *</label>
       <input
         type="text"
         id="email"
         name="email"
-        placeholder="Email"
         value={form?.email}
         onChange={handleChange}
         required
+        className='w-[500px] border-b-2 border-gray-400 focus:outline-none focus:border-green-500'
       />
-      <label htmlFor="subject">Subject</label>
+      </div>
+
+      <div className='flex w-[500px] flex-col justify-center'>
+      <label htmlFor="subject">Subject *</label>
       <input
         type="text"
         id="subject"
         name="subject"
-        placeholder="Subject"
         value={form?.subject}
         onChange={handleChange}
         required
+        className='w-[500px] border-b-2 border-gray-400 focus:outline-none focus:border-green-500'
       />
-      <label htmlFor="message">description</label>
+      </div>
+
+      <div className='flex w-[500px] flex-col justify-center'>
+      <label htmlFor="description">Description *</label>
       <input
         type="text"
         id="description"
         name="description"
-        placeholder="description"
         value={form?.description}
         onChange={handleChange}
         required
+        className='w-[500px] border-b-2 border-gray-400 focus:outline-none focus:border-green-500'
       />
-      <button type="submit">SUBMIT</button>
+      </div>
+      <button type="submit" className=' w-[500px] bg-[#009B64] text-white h-[50px] cursor-pointer'>SUBMIT</button>
     </form>
   )
 }

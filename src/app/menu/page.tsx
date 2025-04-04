@@ -28,7 +28,7 @@ const Menu = () => {
     }
     fetchMenuItems()
   }, [])
-
+  const countItems = menuItems.length
   //how to make delete functionality?
   //get each img's id
 const handleDelete = async (id: string) => {
@@ -38,6 +38,7 @@ const handleDelete = async (id: string) => {
 
   return (
     <div className="p-4">
+      <p>{countItems} products</p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {menuItems.map((item) => (
           <div key={item.id} className="border rounded-lg p-4 shadow-lg">
@@ -52,10 +53,13 @@ const handleDelete = async (id: string) => {
               />
             </div>
             <h2 className="text-lg font-semibold mt-2">{item.name}</h2>
-            <p className="text-gray-600">{item.description}</p>
             <p className="text-green-600 font-bold mt-1">
               ${item.price.toFixed(2)}
             </p>
+            <button>ADD TO CART</button>
+
+
+
             {user && <button onClick={() => handleDelete(item.id)}>X</button>}
           </div>
           

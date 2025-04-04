@@ -8,11 +8,11 @@ import Link from 'next/link'
  const ContactUs = () => {
   const [user] = useAuthState(auth)
   return (
-    <div>
-      <h1>Contact us</h1>
+    <div className='bg-[#f7f7f7]'>
+      <h1 className='text-[30px] text-center  font-bold mt-10'>Contact us</h1>
       <ContactUsForm />
-      <p>{user && <Link href="/contactUs/contactUsAdmin">Manage Contact Us</Link>}</p>
-        <p></p>
+      {user && <p className='text-red-600 font-bold text-[20px] text-center'><Link href="/contactUs/contactUsAdmin">Manage Contact Us</Link></p>}
+
     </div>
   )
 }
