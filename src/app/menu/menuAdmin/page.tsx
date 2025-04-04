@@ -2,13 +2,18 @@
 import UploadImage from "@/components/UploadImage"
 import { db } from "@/lib/firebase/config";
 import { collection, addDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@/lib/firebase/config';
 const menuAdmin = () => {
+  const [user] = useAuthState(auth);
+  console.log('user',user)
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-
+  const router = useRouter()
   const handleUploadComplete = async (url: string): Promise<void> => {
     setImageUrl(url); // Store image URL
   };
@@ -19,20 +24,23 @@ const menuAdmin = () => {
     }
 
     try {
-      await addDoc(collection(db, "menuItems"), {
-        name,
-        description,
-        price: parseFloat(price),
-        url: imageUrl,
+      const res = await fetch('/api/menu', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({name, description, price, imageUrl}),
+      })
+      if (res.ok) {
+        alert("Menu item added successfully!")
+        router.push('/menu')
         
-      });
-      alert("Menu item added successfully!");
-    } catch (error) {
+    } }catch (error) {
       console.error("Error adding menu item", error);
     }
   };
 
-  return (
+  return (user && 
     <div className="p-4">
       <h2 className="text-xl font-bold">Add New Menu Item</h2>
       <input
@@ -65,6 +73,6 @@ const menuAdmin = () => {
         Add Item
       </button>
     </div>
-  );
+  )
 }
 export default menuAdmin

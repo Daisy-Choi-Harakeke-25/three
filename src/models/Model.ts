@@ -11,6 +11,12 @@ export interface MenuItem {
   price: number
   url: string
 }
+export interface MenuItemDraft {
+  name: string
+  description: string
+  price: number
+  url: string
+}
 
 export interface ContactUs {
   name: string

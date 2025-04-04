@@ -1,40 +1,55 @@
 'use client'
 
-import { db } from '@/lib/firebase/config'
+import { auth, db } from '@/lib/firebase/config'
 import type { MenuItem } from '@/models/Model'
-import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
+import { deleteDoc, doc } from 'firebase/firestore'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { auth } from '@/lib/firebase/config'
-import { useAuthState } from 'react-firebase-hooks/auth'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const Menu = () => {
+  const router = useRouter()
   const [user] = useAuthState(auth)
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
-
+  const countItems = menuItems.length
   useEffect(() => {
     const fetchMenuItems = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'menuItems'))
-        const items: MenuItem[] = querySnapshot.docs.map((doc) => ({
-          id: doc.id, 
-          ...doc.data(),
-        })) as MenuItem[]
-        setMenuItems(items)
-      } catch (error) {
-        console.error('Error fetching menu items:', error)
-      }
+      const res = await fetch('/api/menu')
+      const data = await res.json()
+      setMenuItems(data)
     }
     fetchMenuItems()
   }, [])
-  const countItems = menuItems.length
-  //how to make delete functionality?
-  //get each img's id
-const handleDelete = async (id: string) => {
-    await deleteDoc(doc(db, 'menuItems', id))
-    setMenuItems((prevItems) => prevItems.filter((item) => item.id !== id))
-}
+
+  
+  const handleDelete = async (id: string) => {
+    try {
+      const res = await fetch('/api/menu', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      })
+      router.push('/menu')
+    } catch (error) {
+      console.error('Error adding menu item', error)
+    }
+  }
+
+  const handleClick = (item: MenuItem) => {
+    if (!item.id) {
+      console.error('Item ID is missing')
+      return
+    }
+    try {
+      router.push(`/menu/${item.id}`)
+    } catch (error) {
+      console.error('Error loading menu item', error)
+    }
+  }
 
   return (
     <div className="p-4">
@@ -49,20 +64,15 @@ const handleDelete = async (id: string) => {
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
-                
+                onClick={() => handleClick(item)}
               />
             </div>
-            <h2 className="text-lg font-semibold mt-2">{item.name}</h2>
-            <p className="text-green-600 font-bold mt-1">
-              ${item.price.toFixed(2)}
-            </p>
+            <h2 className="text-lg font-semibold mt-2" onClick={() => handleClick(item)}>{item.name}</h2>
+            <p className="text-green-600 font-bold mt-1">${item.price}</p>
             <button>ADD TO CART</button>
-
-
 
             {user && <button onClick={() => handleDelete(item.id)}>X</button>}
           </div>
-          
         ))}
       </div>
       <p>{user && <Link href="/menu/menuAdmin">Upload Menu</Link>}</p>
