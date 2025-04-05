@@ -6,10 +6,10 @@ import { db } from "@/lib/firebase/config";
 // GET /api/menu/[id]
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const menuRef = doc(db, "menuItems", params.id)
+    const menuRef = doc(db, "menuItems", (await params).id)
     const menuItem = await getDoc(menuRef)
 
     if (!menuItem.exists()) {

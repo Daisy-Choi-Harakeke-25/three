@@ -2,6 +2,7 @@
 
 import { auth, db } from '@/lib/firebase/config'
 import type { MenuItem } from '@/models/Model'
+import useCart from '@/stores/cartStore'
 import { deleteDoc, doc } from 'firebase/firestore'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -39,17 +40,19 @@ const Menu = () => {
     }
   }
 
-  const handleClick = (item: MenuItem) => {
-    if (!item.id) {
+  const handleClick = (id: string) => {
+    if (!id) {
       console.error('Item ID is missing')
       return
     }
     try {
-      router.push(`/menu/${item.id}`)
+      router.push(`/menu/${id}`)
     } catch (error) {
       console.error('Error loading menu item', error)
     }
   }
+
+  const addCart = useCart((state) => state.addCart)
 
   return (
     <div className="p-4">
@@ -64,12 +67,12 @@ const Menu = () => {
                 layout="fill"
                 objectFit="cover"
                 className="rounded-lg"
-                onClick={() => handleClick(item)}
+                onClick={() => handleClick(item.id)}
               />
             </div>
-            <h2 className="text-lg font-semibold mt-2" onClick={() => handleClick(item)}>{item.name}</h2>
+            <h2 className="text-lg font-semibold mt-2" onClick={() => handleClick(item.id)}>{item.name}</h2>
             <p className="text-green-600 font-bold mt-1">${item.price}</p>
-            <button>ADD TO CART</button>
+            <button onClick={() => addCart({id: item.id, name: item.name, price: item.price, imageUrl: item.url, quantity: 1})}>ADD TO CART</button>
 
             {user && <button onClick={() => handleDelete(item.id)}>X</button>}
           </div>
