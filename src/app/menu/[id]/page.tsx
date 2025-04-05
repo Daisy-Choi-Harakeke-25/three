@@ -1,6 +1,6 @@
 'use server'
+import MenuItemListComponent from '@/app/menu/[id]/MenuItemListComponent'
 import { MenuItemDraft } from '@/models/Model'
-import Image from 'next/image'
 
 type PageProps = { params: Promise<{ id: string }> }
 
@@ -20,12 +20,7 @@ const Page = async ({ params }: PageProps) => {
   if (!menuItem) return <p>Loading...</p>
   return (
     <div>
-      <Image src={menuItem.url} alt={menuItem.name} width={500} height={500} />
-      <h1>{menuItem.name}</h1>
-      <h3>{menuItem.price}</h3>
-      <p>{menuItem.description}</p>
-      <button>Add to cart</button>
-      <button>Buy now</button>
+      <MenuItemListComponent menuItem={menuItem} id={id}/>
     </div>
   )
 }

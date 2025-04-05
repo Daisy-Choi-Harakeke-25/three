@@ -1,7 +1,7 @@
 'use client'
 import useCart from '@/stores/cartStore'
 import Image from 'next/image'
-import { shallow, useShallow } from 'zustand/shallow'
+import { useShallow } from 'zustand/shallow'
 
 const Cart = () => {
   // Use shallow to subscribe to specific parts of the store
