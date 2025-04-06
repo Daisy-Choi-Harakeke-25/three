@@ -1,6 +1,60 @@
-# ThreeBarFifty - Dessert Shop Website
+# 🍰 Threebarfifty - Minimal Dessert Shop App
 
-A professional full-stack web application for ThreeBarFifty, a dessert shop, showcasing a variety of cakes and treats with online ordering capabilities.
+**threefifty** started as a simple dessert shop run by myself.
+At first, I built the website using Wix, but I wanted more control, better performance, and the ability to truly own what I create.
+
+That’s when I began learning software engineering.
+
+This project marks the beginning of my journey as a developer.
+It’s not just a portfolio piece — it’s the reason I fell in love with coding.
+
+Check out the live website: [threefifty.com](https://www.threebarfifty.com)
+
+---
+
+
+## 🛠️ Tech Stack
+
+| Category        | Stack                                 |
+|-----------------|----------------------------------------|
+| Frontend        | Next.js (App Router), TypeScript       |
+| Styling         | Tailwind CSS                           |
+| State Management| Zustand                                 |
+| Backend         | Next.js API Routes                     |
+| Database        | Firebase Firestore                     |
+| Hosting         | Firebase Hosting                       |
+
+---
+
+
+## 🚀 Features
+
+- ✅ Server-Side Rendering (SSR) for item detail pages
+- ✅ Zustand-based shopping cart (persistent and reactive)
+- ✅ Firebase backend integration (Firestore + Hosting)
+- ✅ Modular file structure and clean code architecture
+- ✅ Optimized image rendering with `next/image`
+
+---
+
+## 🛒 Cart Management
+
+- `addCart(item)`  
+  → Add or update item in the cart
+
+- `removeCart(id)`  
+  → Decrease quantity or remove item from cart
+
+- `removeItemFromCart(id)`  
+  → Remove a item from cart
+
+- `count`  
+  → Total number of items in the cart
+
+
+All cart data is persisted via `zustand/persist`.
+
+---
 
 
 
