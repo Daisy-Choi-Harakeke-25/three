@@ -19,10 +19,11 @@ Check out the live website: [threefifty.com](https://www.threebarfifty.com)
 |-----------------|----------------------------------------|
 | Frontend        | Next.js (App Router), TypeScript       |
 | Styling         | Tailwind CSS                           |
-| State Management| Zustand                                 |
+| State Management| Zustand                                |
 | Backend         | Next.js API Routes                     |
 | Database        | Firebase Firestore                     |
 | Hosting         | Firebase Hosting                       |
+| Authentication  | Firebase Authentication                |
 
 ---
 

@@ -1,6 +1,7 @@
 'use server'
 import MenuItemListComponent from '@/app/menu/[id]/MenuItemListComponent'
 import { MenuItemDraft } from '@/models/Model'
+import Link from 'next/link'
 
 type PageProps = { params: Promise<{ id: string }> }
 
@@ -19,7 +20,8 @@ const Page = async ({ params }: PageProps) => {
   const menuItem: MenuItemDraft = await getMenuItem(id)
   if (!menuItem) return <p>Loading...</p>
   return (
-    <div>
+    <div className='mx-80'>
+      <p ><Link href='/' className='mx-2'>Home</Link>/<Link href='/menu' className='mx-2'>All products</Link>/<Link href={`${id}`} className='mx-2'>{menuItem.name}</Link></p>
       <MenuItemListComponent menuItem={menuItem} id={id}/>
     </div>
   )

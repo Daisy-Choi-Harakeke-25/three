@@ -33,7 +33,7 @@ const Home = () => {
           alt="main-cake"
         />
       </div>
-      <p className="text-[40px] text-center">
+      {/* <p className="text-[40px] text-center">
         Follow us on Instagram
         <Link
           href="https://www.instagram.com/threebarfifty/#"
@@ -41,7 +41,7 @@ const Home = () => {
         >
           @threebarfifty
         </Link>
-      </p>
+      </p> */}
     </div>
   )
 }
