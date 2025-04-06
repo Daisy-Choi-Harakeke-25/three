@@ -11,9 +11,10 @@ type CartItem = {
 type CartState = {
   count: number
   cart: CartItem[]
-  addCart: (item: CartItem) => void
-  removeCart: (id: string) => void
+  increaseItemQuantity: (item: CartItem) => void
+  decreaseItemQuantity: (id: string) => void
   removeItemFromCart: (id: string) => void
+  addItemToCart: (item: CartItem) => void
 }
 
 const useCart = create(
@@ -22,7 +23,7 @@ const useCart = create(
       count: 0,
       cart: [],
 
-      addCart: (item) =>
+      increaseItemQuantity: (item) =>
         set((state) => {
           const existingItem = state.cart.find(
             (cartItem) => cartItem.id === item.id
@@ -43,7 +44,7 @@ const useCart = create(
           }
         }),
 
-      removeCart: (id) =>
+        decreaseItemQuantity: (id) =>
         set((state) => {
           const existingItem = state.cart.find((item) => item.id === id)
           if (existingItem && existingItem.quantity > 1) {
@@ -61,6 +62,28 @@ const useCart = create(
             cart: state.cart.filter((item) => item.id !== id),
           }
         }),
+
+        addItemToCart: (item) =>
+          set((state) => {
+            const existingItem = state.cart.find(
+              (cartItem) => cartItem.id === item.id
+            )
+            if (existingItem) {
+              return {
+                count: state.count + item.quantity,
+                cart: state.cart.map((cartItem) =>
+                  cartItem.id === item.id
+                    ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+                    : cartItem
+                ),
+              }
+            }
+            return {
+              count: state.count + item.quantity,
+              cart: [...state.cart, { ...item, quantity: item.quantity }],
+            }
+          }),
+
       removeItemFromCart: (id) =>
         set((state) => {
             const updatedCart = state.cart.filter((item) => item.id !== id)

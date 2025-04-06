@@ -52,7 +52,7 @@ const Menu = () => {
     }
   }
 
-  const addCart = useCart((state) => state.addCart)
+  const addItemToCart = useCart((state) => state.addItemToCart)
 
   return (
     <div className="p-4">
@@ -72,7 +72,7 @@ const Menu = () => {
             </div>
             <h2 className="text-lg font-semibold mt-2" onClick={() => handleClick(item.id)}>{item.name}</h2>
             <p className="text-green-600 font-bold mt-1">${item.price}</p>
-            <button onClick={() => addCart({id: item.id, name: item.name, price: item.price, imageUrl: item.url, quantity: 1})}>ADD TO CART</button>
+            <button onClick={() => addItemToCart({id: item.id, name: item.name, price: item.price, imageUrl: item.url, quantity: 1})}>ADD TO CART</button>
 
             {user && <button onClick={() => handleDelete(item.id)}>X</button>}
           </div>
