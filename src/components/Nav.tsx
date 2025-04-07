@@ -6,12 +6,12 @@ import { useShallow } from 'zustand/shallow'
 
 
 const Nav = () => {
-  const { cart } = useCart(
+  const { count } = useCart(
     useShallow((state) => ({
-cart: state.cart,
+count: state.count,
     }))
   )
-  const countCartItems = cart.length
+  const countCartItems = count
   return (
     <nav className="flex flex-col md:flex-row items-center justify-between px-4 py-4 md:px-16 bg-white ">
       <Link href="/" className="m-6">
