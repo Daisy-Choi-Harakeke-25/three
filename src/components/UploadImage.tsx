@@ -59,12 +59,12 @@ export default function UploadImage({ onUpload }: UploadImageProps) {
   return (
     <div>
       <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={uploading}>
+      <button onClick={handleUpload} disabled={uploading} className="cursor-pointer border-2 border-[#009B64] bg-[#009B64] text-white py-3 px-6 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out hover:bg-white hover:text-[#009B64] hover:border-[#007a48] transform hover:scale-105">
         {uploading ? 'Uploading...' : 'Upload Image'}
       </button>
       {uploadedUrl && (
         <div>
-          <p>Uploaded image:</p>
+          <p >Uploaded image:</p>
           <Image
             src={uploadedUrl}
             alt="Uploaded image"

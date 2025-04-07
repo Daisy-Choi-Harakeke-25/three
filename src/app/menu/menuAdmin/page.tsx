@@ -69,7 +69,7 @@ const menuAdmin = () => {
 
       {imageUrl && <p className="text-green-600">Image uploaded successfully!</p>}
 
-      <button onClick={handleAddMenuItem} className="bg-blue-500 text-white px-4 py-2 mt-2">
+      <button onClick={handleAddMenuItem} className="cursor-pointer border-2 border-[#009B64] bg-[#009B64] text-white py-3 px-6 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out hover:bg-white hover:text-[#009B64] hover:border-[#007a48] transform hover:scale-105">
         Add Item
       </button>
     </div>

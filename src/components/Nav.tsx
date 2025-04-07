@@ -13,7 +13,7 @@ cart: state.cart,
   )
   const countCartItems = cart.length
   return (
-    <nav className="flex align-middle">
+    <nav className="flex flex-col md:flex-row items-center justify-between px-4 py-4 md:px-16 bg-white ">
       <Link href="/" className="m-6">
         <CldImage
           width="110"

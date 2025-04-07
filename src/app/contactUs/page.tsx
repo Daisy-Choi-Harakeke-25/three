@@ -9,9 +9,10 @@ import Link from 'next/link'
   const [user] = useAuthState(auth)
   return (
     <div className='bg-[#f7f7f7]'>
+      {user && <p className='text-red-600 font-bold text-[20px] text-center'><Link href="/contactUs/contactUsAdmin">Manage Contact Us</Link></p>}
       <h1 className='text-[30px] text-center  font-bold mt-10'>Contact us</h1>
       <ContactUsForm />
-      {user && <p className='text-red-600 font-bold text-[20px] text-center'><Link href="/contactUs/contactUsAdmin">Manage Contact Us</Link></p>}
+      
 
     </div>
   )

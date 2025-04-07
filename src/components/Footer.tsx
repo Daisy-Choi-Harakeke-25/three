@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation'
           signOut(auth)
           router.push('/')
         }}
-        className="text-red-600 font-bold"
+        className="text-red-600 font-bold cursor-pointer"
       >
         Log out
       </button>

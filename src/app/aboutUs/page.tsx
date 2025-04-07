@@ -5,7 +5,7 @@ import { CldImage } from 'next-cloudinary'
 
 const AboutUs = () => {
   return (
-    <div className="flex flex-row h-[500px] mx-4">
+    <div className="flex flex-col-reverse lg:flex-row mx-4 lg:h-[500px]">
       <div className="flex w-full items-center ">
         <CldImage src="Logo_juzkwh" alt="logo" className="w-full h-full object-contain items-center scale-75" width="960"
           height="600"/>
