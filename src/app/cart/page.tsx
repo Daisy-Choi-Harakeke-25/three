@@ -1,4 +1,5 @@
 'use client'
+import CheckoutButton from '@/components/CheckoutButton'
 import useCart from '@/stores/cartStore'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -33,7 +34,7 @@ const Cart = () => {
             <p><Link href='/menu'>Continue shopping</Link></p>
           </div>
           {cart.map((item) => (
-            <div className='flex flex-row place-content-between align-middle border-b-2 py-6 border-[#009B64] items-center'>
+            <div className='flex flex-row place-content-between align-middle border-b-2 py-6 border-[#009B64] items-center' key={item.id}>
               <Image
                 src={item.imageUrl}
                 alt={item.name}
@@ -66,7 +67,7 @@ const Cart = () => {
       <h2>Total items: {totalItem}</h2>
       <h2>Subtotal: {totalPrice}</h2>
       <h2>Total: {totalPrice}</h2>
-      <button className="cursor-pointer border-2 border-[#009B64] bg-[#009B64] text-white py-3 px-6 rounded-full font-semibold text-lg transition-all duration-300 ease-in-out hover:bg-white hover:text-[#009B64] hover:border-[#007a48] transform hover:scale-105">CHECKOUT</button>
+      <CheckoutButton />
       </div>
     </div>
   )

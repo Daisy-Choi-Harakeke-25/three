@@ -15,6 +15,7 @@ type CartState = {
   decreaseItemQuantity: (id: string) => void
   removeItemFromCart: (id: string) => void
   addItemToCart: (item: CartItem) => void
+  clearCart: () => void
 }
 
 const useCart = create(
@@ -44,7 +45,7 @@ const useCart = create(
           }
         }),
 
-        decreaseItemQuantity: (id) =>
+      decreaseItemQuantity: (id) =>
         set((state) => {
           const existingItem = state.cart.find((item) => item.id === id)
           if (existingItem && existingItem.quantity > 1) {
@@ -63,37 +64,48 @@ const useCart = create(
           }
         }),
 
-        addItemToCart: (item) =>
-          set((state) => {
-            const existingItem = state.cart.find(
-              (cartItem) => cartItem.id === item.id
-            )
-            if (existingItem) {
-              return {
-                count: state.count + item.quantity,
-                cart: state.cart.map((cartItem) =>
-                  cartItem.id === item.id
-                    ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
-                    : cartItem
-                ),
-              }
-            }
+      addItemToCart: (item) =>
+        set((state) => {
+          const existingItem = state.cart.find(
+            (cartItem) => cartItem.id === item.id
+          )
+          if (existingItem) {
             return {
               count: state.count + item.quantity,
-              cart: [...state.cart, { ...item, quantity: item.quantity }],
+              cart: state.cart.map((cartItem) =>
+                cartItem.id === item.id
+                  ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+                  : cartItem
+              ),
             }
-          }),
+          }
+          return {
+            count: state.count + item.quantity,
+            cart: [...state.cart, { ...item, quantity: item.quantity }],
+          }
+        }),
 
       removeItemFromCart: (id) =>
         set((state) => {
-            const updatedCart = state.cart.filter((item) => item.id !== id)
-            const updatedCount = updatedCart.reduce((total, item) => total + item.quantity, 0)
-              return {
-                count: updatedCount,
-                cart: updatedCart,
-              }
-            
-          
+          const updatedCart = state.cart.filter((item) => item.id !== id)
+          const updatedCount = updatedCart.reduce(
+            (total, item) => total + item.quantity,
+            0
+          )
+          return {
+            count: updatedCount,
+            cart: updatedCart,
+          }
+        }),
+      clearCart: () =>
+        set((state) => {
+          if(state.cart.length !== 0) {
+            return {
+              count: 0,
+              cart: [],
+            }
+          }
+          return state
         }),
     }),
     {

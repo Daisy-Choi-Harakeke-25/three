@@ -34,9 +34,9 @@ cart: state.cart,
         <p>
           <Link href="/contactUs">Contact us</Link>
         </p>
-        <p>
-          <Link href="/cart"  className='flex flex-row'>Cart<p className='bg-[#009B64] w-8 h-8 flex items-center justify-center rounded-full text-white ml-2'>{countCartItems}</p></Link>
-        </p>
+        <div>
+          <Link href="/cart"  className='flex flex-row'>Cart<div className='bg-[#009B64] w-8 h-8 flex items-center justify-center rounded-full text-white ml-2'>{countCartItems}</div></Link>
+        </div>
       </div>
     </nav>
   )

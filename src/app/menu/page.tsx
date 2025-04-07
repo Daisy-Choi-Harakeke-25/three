@@ -1,9 +1,8 @@
 'use client'
 
-import { auth, db } from '@/lib/firebase/config'
+import { auth } from '@/lib/firebase/config'
 import type { MenuItem } from '@/models/Model'
 import useCart from '@/stores/cartStore'
-import { deleteDoc, doc } from 'firebase/firestore'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

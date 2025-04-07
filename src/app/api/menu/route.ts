@@ -53,10 +53,10 @@ export async function DELETE(
   request: Request
 ) {
   try {
-    const id = await request.json()
-    if(!id) return NextResponse.json({ message: 'Id not found' },{ status: 404 })
+    const { id } = await request.json()
+    if(!id || typeof id !== 'string') return NextResponse.json({ message: 'Id not found' },{ status: 404 })
     await deleteDoc(doc(db, 'menuItems', id))
-    return NextResponse.json({ message: 'Deleted successfully' },{ status: 201 })
+    return NextResponse.json({ message: 'Deleted successfully' },{ status: 200 })
   } catch (error) {
     console.error("Error in DELETE", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
