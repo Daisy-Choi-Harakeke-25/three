@@ -1,4 +1,4 @@
-# 🍰 Threebarfifty - Minimal Dessert Shop App
+# 🍰 Threebarfifty - Dessert Shop App
 
 **threefifty** started as a simple dessert shop run by myself.
 At first, I built the website using Wix, but I wanted more control, better performance, and the ability to truly own what I create.
@@ -8,7 +8,7 @@ That’s when I began learning software engineering.
 This project marks the beginning of my journey as a developer.
 It’s not just a portfolio piece — it’s the reason I fell in love with coding.
 
-Check out the live website: [threefifty.com](https://www.threebarfifty.com)
+Check out the live website: [threebarfifty.com](https://www.threebarfifty.com)
 
 ---
 
@@ -24,17 +24,27 @@ Check out the live website: [threefifty.com](https://www.threebarfifty.com)
 | Database        | Firebase Firestore                     |
 | Hosting         | Firebase Hosting                       |
 | Authentication  | Firebase Authentication                |
+| Payment         | Stripe                                 |
+| Image Hosting   | Cloudinary                             |
 
 ---
 
 
 ## 🚀 Features
 
-- ✅ Server-Side Rendering (SSR) for item detail pages
-- ✅ Zustand-based shopping cart (persistent and reactive)
-- ✅ Firebase backend integration (Firestore + Hosting)
-- ✅ Modular file structure and clean code architecture
-- ✅ Optimized image rendering with `next/image`
+✅ Server-Side Rendering (SSR) for item detail pages
+
+✅ Zustand-based shopping cart (persistent and reactive)
+
+✅ Firebase backend integration (Firestore + Hosting)
+
+✅ Modular file structure and clean code architecture
+
+✅ Optimized image rendering with next/image
+
+✅ Stripe payment integration for secure transactions
+
+✅ Cloudinary image upload and management for optimized delivery
 
 ---
 

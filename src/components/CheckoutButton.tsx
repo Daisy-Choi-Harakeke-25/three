@@ -1,5 +1,5 @@
+'use client'
 import useCart from '@/stores/cartStore'
-import { useRouter } from 'next/navigation'
 import { useShallow } from 'zustand/shallow'
 
 type CartItem = {
@@ -24,10 +24,10 @@ const CheckoutButton = () => {
     cart: state.cart,
     clearCart: state.clearCart
   })))
-  const router = useRouter()
+  // const router = useRouter()
   const handleCheckout = async () => {
-    console.log('working?')
-    const res = await fetch('/api/checkout_sessions', {
+    const baseUrl = typeof window === 'undefined' ? 'http://localhost' : ''
+    const res = await fetch(`${baseUrl}/api/checkout_sessions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +40,8 @@ const CheckoutButton = () => {
       clearCart()
       window.location.href = data.url
     } else {
-      router.push('/cancel')
+      // router.push('/cancel')
+      alert('could`t proceed payment')
     }
   }
   return (

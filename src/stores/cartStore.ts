@@ -47,6 +47,7 @@ const useCart = create(
 
       decreaseItemQuantity: (id) =>
         set((state) => {
+        
           const existingItem = state.cart.find((item) => item.id === id)
           if (existingItem && existingItem.quantity > 1) {
             return {

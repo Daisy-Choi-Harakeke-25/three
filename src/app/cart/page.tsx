@@ -43,7 +43,7 @@ const Cart = () => {
         <div className="flex flex-col w-7/10">
           <div className="flex flex-row  place-content-between border-b-2 py-4 border-[#009B64]">
             <h1>My cart</h1>
-            <p onClick={clearCart} className=' cursor-pointer'>Clear All</p>
+            <p onClick={clearCart} className=' cursor-pointer'>Clear Cart</p>
             <p>
               <Link href="/menu">Continue shopping</Link>
             </p>
@@ -93,8 +93,7 @@ const Cart = () => {
       <div className="w-3/10 flex flex-col gap-4">
         <h1 className="border-b-2 py-4 border-[#009B64]">Order summary</h1>
         <h2>Total items: {totalItem}</h2>
-        <h2>Subtotal: {totalPrice}</h2>
-        <h2>Total: {totalPrice}</h2>
+        <h2>Total: ${totalPrice}</h2>
         <CheckoutButton />
       </div>
     </div>

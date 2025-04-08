@@ -1,14 +1,9 @@
-"use client"
+'use client'
 import './styles/globals.css'
 import Nav from '../components/Nav'
 import Footer from '@/components/Footer'
 
-
-const Layout = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head>
@@ -20,8 +15,8 @@ const Layout = ({
       <body>
         <Nav />
         <main>{children}</main>
-        
-        <footer className='text-center'>
+
+        <footer className="text-center">
           <Footer />
           <p>© 2025 Daisy Choi</p>
         </footer>
