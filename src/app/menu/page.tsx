@@ -25,13 +25,7 @@ const Menu = () => {
       .catch((err) => {
         console.error(err)
       })
-
-    // if () {
-
-    console.log('before useFect', menuItems)
-    // }
   }, [])
-  console.log('aaafter useFect', menuItems)
 
   const handleDelete = async (id: string) => {
     try {
@@ -44,7 +38,6 @@ const Menu = () => {
       })
       const data = await fetchMenuItems()
       setMenuItems(data)
-      // router.push('/menu')
     } catch (error) {
       console.error('Error adding menu item', error)
     }

@@ -23,16 +23,16 @@ describe('CheckoutButton Component', () => {
   it('render CheckoutButton', () => {
     render(<CheckoutButton />)
  
-    const button = screen.getByRole('button', { name: /CHECKOUT/i })
+    const checkoutButton = screen.getByRole('button', { name: /CHECKOUT/i })
 
-    expect(screen.getByRole('button', { name: 'CHECKOUT' })).toStrictEqual(button)
+    expect(checkoutButton).toHaveTextContent('CHECKOUT')
 })
   it('when the button is clicked, render checkout_session page', async () => {
     const user = userEvent.setup()
     render(<CheckoutButton />)
     const button = screen.getByRole('button', { name: /CHECKOUT/i })
 
-    const userClickButton = await user.click(button)
+    await user.click(button)
 
     expect(window.location.href).toBe('https://checkout.stripe.com/c/pay/mockedsessionid')
   })

@@ -22,7 +22,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/migrations/20250402003406_migration_name.js", "tests/components/test-utils.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "db/migrations/20250402003406_migration_name.js", "src/components/tests/components/test-utils.js"],
   "exclude": ["node_modules"]
 }
 
