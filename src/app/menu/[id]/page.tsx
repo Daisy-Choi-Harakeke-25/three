@@ -40,3 +40,14 @@ const Page = async ({ params }: PageProps) => {
 }
 
 export default Page
+
+//add generate params of an array from GET /api/menu
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menu`)
+  const data = await res.json()
+console.log(data)
+  // Return an array of possible dynamic params
+  return data.map((item: { id: string }) => ({
+    id: item.id,  // This will generate static pages for each menu item
+  }))
+}
