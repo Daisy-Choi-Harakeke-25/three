@@ -1,4 +1,6 @@
-'use server'
+export const dynamic = "force-static"; // Forces the route to be static
+export const revalidate = 60; // Set revalidation time (optional, in seconds)
+
 import { NextResponse } from "next/server";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/config"; 

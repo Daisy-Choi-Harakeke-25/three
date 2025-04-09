@@ -1,4 +1,5 @@
-import { GetServerSideProps } from 'next'
+export const dynamic = "force-static"; // Forces the route to be static
+export const revalidate = 60; // Set revalidation time (optional, in seconds)
 import MenuItemListComponent from '@/app/menu/[id]/MenuItemListComponent'
 import { MenuItemDraft } from '@/models/Model'
 import Link from 'next/link'
@@ -17,6 +18,7 @@ async function getMenuItem(id: string) {
 
 const Page = async ({ params }: PageProps) => {
   const id = (await params).id
+  if(!id) return 
   const menuItem: MenuItemDraft = await getMenuItem(id)
   if (!menuItem) return <p>Loading...</p>
   return (
@@ -41,13 +43,20 @@ const Page = async ({ params }: PageProps) => {
 
 export default Page
 
-//add generate params of an array from GET /api/menu
 export async function generateStaticParams() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menu`)
-  const data = await res.json()
-console.log(data)
-  // Return an array of possible dynamic params
-  return data.map((item: { id: string }) => ({
-    id: item.id,  // This will generate static pages for each menu item
-  }))
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menu`);
+    if (!res.ok) {
+      throw new Error('Failed to fetch menu items');
+    }
+    const menuItems = await res.json();
+console.log(menuItems)
+    // Ensure the fetched data structure matches what you expect
+    return menuItems.map((item: { id: string }) => ({
+      params: { id: item.id },
+    }));
+  } catch (error) {
+    console.error('Error fetching menu items:', error);
+    return [];  // Return an empty array if fetching fails
+  }
 }

@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions';
-import * as next from 'next';
+import next from 'next';
 import { Request, Response } from 'express';
 
 const dev = process.env.NODE_ENV !== 'production';  // To enable dev mode in local environment

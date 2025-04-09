@@ -1,4 +1,6 @@
-'use server'
+export const dynamic = "force-static"; // Forces the route to be static
+export const revalidate = 60; // Set revalidation time (optional, in seconds)
+
 import { db } from "@/lib/firebase/config";
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { NextResponse } from "next/server";
@@ -8,6 +10,7 @@ export async function GET(
   request: Request
 ) {
   try {
+    console.log('working?')
     const menuRef = collection(db, "menuItems")
     const menuSnap = await getDocs(menuRef)
     if (menuSnap.empty) {
