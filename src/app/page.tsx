@@ -15,7 +15,7 @@ const Home = () => {
         />
       </div>
       <div className="flex gap-12 my-12  mx-20 justify-between">
-        <div className="bg-[#009B64] text-white h-[400px] px-20 flex flex-col gap-10 justify-center py-4">
+        <div className="bg-[#009B64] text-white w-1/2 h-[400px] px-20 flex flex-col gap-10 justify-center py-4">
           <h1 className="text-[50px] font-bold">Seeking Fulfillment</h1>
           <p className="text-[20px] font-bold text-customGreen">
             Threebarfifty`s motto,`Seeking Fulfillment,` drives us to
@@ -24,13 +24,16 @@ const Home = () => {
             treats that exceed our customers` expectations.
           </p>
         </div>
-        <CldImage
-          width="960"
-          height="600"
-          src="Main-Cake_leby0z"
-          sizes="20vw"
-          alt="main-cake"
-        />
+    <div className='w-1/2 relative aspect-[4/3] h-[400px]'>
+          <CldImage
+            src="Main-Cake_leby0z"
+            alt="main-cake"
+            fill
+            crop="fill"
+            sizes="50vw"
+            className="object-cover"
+          />
+          </div>
       </div>
       {/* <p className="text-[40px] text-center">
         Follow us on Instagram

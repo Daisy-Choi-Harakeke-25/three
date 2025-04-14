@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -8,11 +8,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        // hostname: 'res.cloudinary.com',
-        hostname: "firebasestorage.googleapis.com",
+        hostname: 'firebasestorage.googleapis.com',
+        pathname: '/v0/b/three-bar-fifty.firebasestorage.app/o/**',
       },
     ],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig
