@@ -1,26 +1,31 @@
 export const dynamic = 'force-dynamic'
 
 import { db } from '@/lib/firebase/config'
-import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from 'firebase/firestore'
 import { NextResponse } from 'next/server'
 
 // GET /api/menu
 export async function GET(request: Request) {
   try {
-    const menuRef = collection(db, 'menuItems')
-    const menuSnap = await getDocs(menuRef)
-    if (menuSnap.empty) {
+    const docRef = collection(db, 'menuItems')
+    const docSnap = await getDocs(docRef)
+    if (docSnap.empty) {
       return NextResponse.json(
         { error: 'Menu items not found' },
         { status: 404 }
       )
     }
-    const menuItems = menuSnap.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }))
-    console.log('menu api', menuItems)
-    return NextResponse.json(menuItems)
+    const menuItem = docSnap
+    console.log('menu api', menuItem)
+    return NextResponse.json(menuItem)
   } catch (error) {
     console.error('Error in GET /api/menu', error)
     return NextResponse.json(
@@ -35,12 +40,14 @@ export async function POST(request: Request) {
   try {
     const data = await request.json()
     const { name, description, price, imageUrl } = data
+
     const docRef = await addDoc(collection(db, 'menuItems'), {
       name,
       description,
       price,
       imageUrl,
     })
+
     return NextResponse.json(
       {
         id: docRef.id,
@@ -61,19 +68,25 @@ export async function POST(request: Request) {
   }
 }
 
-// DELETE /api/menu/:id
-export async function DELETE(request: Request) {
+// DELETE /api/menu/[id]
+export async function DELETE(
+  request: Request,
+  context: { params: { id: string } }
+) {
   try {
-    const { id } = await request.json()
-    if (!id || typeof id !== 'string')
+    const id = context.params.id
+    if (!id) {
       return NextResponse.json({ message: 'Id not found' }, { status: 404 })
+    }
+
     await deleteDoc(doc(db, 'menuItems', id))
+
     return NextResponse.json(
       { message: 'Deleted successfully' },
       { status: 200 }
     )
   } catch (error) {
-    console.error('Error in DELETE', error)
+    console.error('Error in DELETE /api/menu/[id]', error)
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }

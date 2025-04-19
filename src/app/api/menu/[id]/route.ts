@@ -7,31 +7,21 @@ import { db } from '@/lib/firebase/config'
 // GET /api/menu/[id]
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    const { id } = await params
-    if (!id) {
+    const {id} = await context.params
+    const docRef = doc(db, 'menuItems', id)
+    const docSnap = await getDoc(docRef)
+    if (!docSnap.exists()) {
       return NextResponse.json(
-        { error: 'Menu item ID is required' },
-        { status: 400 }
-      )
-    }
-
-    const menuRef = doc(db, 'menuItems', id)
-    const menuItem = await getDoc(menuRef)
-
-    if (!menuItem.exists()) {
-      return NextResponse.json(
-        { error: 'Menu item not found' },
+        { error: 'Menu items not found' },
         { status: 404 }
       )
     }
-
-    return NextResponse.json({
-      id: menuItem.id,
-      ...menuItem.data(),
-    })
+    const menuItem = { id: docSnap.id, ...docSnap.data() }
+    console.log('menu api', menuItem)
+    return NextResponse.json(menuItem)
   } catch (error) {
     console.error('Error in GET /api/menu/[id]', error)
     return NextResponse.json(
